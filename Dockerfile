@@ -3,7 +3,7 @@
 # Dockerfile for a node container
 
 #nodejs
-FROM node:9
+FROM node:alpine
 
 ENV ASSET_NAME="smartreportingenabler"
 
@@ -22,18 +22,17 @@ LABEL vf-OS.name=smartreportingenabler
 RUN mkdir -p /usr/src/sre
 # this lets the working directory for every COPY RUN and CMD command
 WORKDIR /usr/src/sre
-
+COPY . .
 # get the node package file
 # wildcard used to ensure both package.json and package-lock.json are copied
-COPY package*.json /usr/src/sre/
+#COPY package*.json /usr/src/sre/
 #COPY bower.json /usr/src/sre/
 #COPY .bowerrc /usr/src/sre/
 
 # install dependencies
-RUN npm i -g @angular/cli
+#RUN npm i -g @angular/cli
 #RUN npm install
 
-COPY . .
 
 # remove version warnings
 # RUN cd fe/sre-app && ng config cli.warnings.versionMismatch false
@@ -45,6 +44,6 @@ COPY . .
 #RUN cd fe/sre-app && ng build
 RUN npm run boot
 # expose the Smart Reporting enabler port
-EXPOSE 2000
+EXPOSE 4201
 
 CMD [ "npm", "start" ]
