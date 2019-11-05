@@ -1,0 +1,24 @@
+<p></p>
+<div class="card">
+  <div class="card-header">
+    Style your report header
+    <span class="float-right">
+
+		<button *ngIf="found" class="btn btn-success btn-sm" (click)="saveh()"><i class="fa fa-save"></i> Save</button>
+
+	</span>
+  </div>
+  <div class="card-body">
+  	<angular-editor *ngIf="found" [config]="config" [(ngModel)]="header.html"></angular-editor>
+	  			
+		<!-- create new header alert -->
+		<div *ngIf="!found && !creatingnew" class="alert alert-warning" role="alert">
+		  <h4 class="alert-heading">There is no header</h4>
+		  <p>Please create your header to be inserted of your report later</p>
+		  <button class="btn btn-warning" (click)="create()">Create now</button>
+		  <!--button class="btn btn-warning" (click)="upload()">Upload file</button-->
+  		</div>
+
+</div>
+
+<p></p>

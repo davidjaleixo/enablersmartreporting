@@ -1,0 +1,107 @@
+<p></p>
+<div class="card">
+  <div class="card-header">
+    <form>
+	
+		<div class="container">
+
+		
+		  <div class="row">
+		  	<!--left side-->
+			    <div class="col">
+			      <!-- table -->
+			      <div class="input-group">
+					  <div class="input-group-prepend">
+					    <label class="input-group-text" for="leftrable">Left Table</label>
+					  </div>
+					  <select class="custom-select"  (change)="onLeftSelect($event.target.value)" #selectedLeftTable>
+					    <option selected>Choose...</option>
+					    <option *ngFor="let tables of selectedTables" value="{{tables.idtables}}">{{tables.name}}</option>
+					  </select>
+					</div>
+					<!-- field -->
+					<div class="input-group">
+						<div class="input-group-prepend">
+					    	<label class="input-group-text" for="leftfield">Left Field</label>
+					  	</div>
+					  	<select class="custom-select" id="leftfield" #selectedLeftField>
+						    <option selected>Choose...</option>
+						    <option *ngFor="let fields of leftFields" value="{{fields.idfields}}">{{fields.name}}</option>
+					  	</select>
+					</div>
+			    </div>
+		  	<!--right side-->	
+		    	<div class="col">
+    		  	<!--table-->
+			      <div class="input-group">
+					  <div class="input-group-prepend">
+					    <label class="input-group-text" for="rightrable">Right Table</label>
+					  </div>
+					  <select class="custom-select" (change)="onRightSelect($event.target.value)" #selectedRightTable>
+					    <option selected>Choose...</option>
+					    <option *ngFor="let table of rightTables" value="{{table.idtables}}">{{table.name}}</option>
+					  </select>
+					</div>
+				<!-- field -->
+			      <div class="input-group">
+					<div class="input-group-prepend">
+				    	<label class="input-group-text" for="rightfield">Right Field</label>
+				  	</div>
+				  	<select class="custom-select" id="rightfield" #selectedRightField>
+					    <option selected>Choose...</option>
+					    <option *ngFor="let fields of rightFields" value="{{fields.idfields}}">{{fields.name}}</option>
+				  	</select>
+					</div>
+			    </div>
+		    <div class="col">
+		      <!-- Add button -->
+		      	<div class="col-md-auto">
+			       <button type="button" class="btn btn-primary" (click)="addRelation(selectedLeftTable.value, selectedLeftField.value, selectedRightTable.value, selectedRightField.value)"><i class="fas fa-arrow-down"></i> Add</button>
+			    </div>
+		    </div>
+		    
+
+		    <!--div class="col">
+		      <div class="input-group">
+				<div class="input-group-prepend">
+					<label class="input-group-text" for="valuegroup">Value</label>
+				</div>
+				<input type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="filterValue">
+			</div>
+		    </div-->
+
+		    
+
+		  </div>
+
+		
+		</div>
+
+	</form>
+  </div>
+  <div class="card-body">
+  	<div class="table-responsive">
+	<table class="table table-hover">
+	  <thead>
+	    <tr>
+	      <th scope="col">Left</th>
+	      <th scope="col"></th>
+	      <th scope="col">Right</th>
+	      <th scope="col">Action</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <tr *ngFor="let relation of relations">
+	      <td scope="row">{{relation.lefttable}} . {{relation.leftfield}}</td>
+	      <td><span class="badge badge-dark">=</span></td>
+	      <td>{{relation.righttable}} . {{relation.rightfield}}</td>
+	      <td>
+	      	<button type="button" class="btn btn-danger btn-sm" (click)="deleteRelation(relation.idrelations)"><i class="fas fa-trash"></i></button>
+	      </td>
+	    </tr>
+	  </tbody>
+	</table>
+	</div>
+</div>
+
+<p></p>

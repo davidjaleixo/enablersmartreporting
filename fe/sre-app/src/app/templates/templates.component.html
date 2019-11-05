@@ -1,0 +1,60 @@
+<!-- Templates section -->
+<div class="card mb-3">
+	<div class="card-header">
+ 		<i class="fas fa-chart-area"></i>
+ 	Your templates
+ 	</div>
+	<div class="card-body">
+	  	<div class="row">
+			<div class="col-xl-3 col-sm-6 mb-3" *ngFor="let tpl of templates; let i=index">
+			  <div class="card o-hidden h-100">
+			    <div class="card-body">
+			      <div class="card-body-icon">
+			        <i class="fas fa-fw fa-life-ring"></i>
+			      </div>
+			      <div class="mr-5">{{tpl.name}}</div>
+			    </div>
+			    <div class="card-footer clearfix small z-1">
+			    	<a (click)="tpldetails(tpl.idtemplates)">
+			    		<span class="float-left">Last updated {{ tpl.updateat | date:"dd/MM/yyyy" }}</span>
+				    	<span class="float-right">
+				    		<i class="fas fa-angle-right"></i>
+				    	</span>
+			    	</a>
+			    </div>
+			  </div>
+			</div>
+		</div>
+	</div>
+	<div class="card-footer small text-muted">
+		<!--button class="btn btn-primary" data-toggle="modal" data-target="#ctpl">
+			<i class="fa fa-plus-circle"></i> Create new
+		</button-->
+		<button class="btn btn-primary" (click)="opencreatetpl(templatetpl)">
+			<i class="fa fa-plus-circle"></i> Create new
+		</button>
+	</div>
+</div>
+
+
+<!-- create template modal -->
+<ng-template #templatetpl>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Create a new template</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+          <div class="form-group">
+            <label for="tplName" class="col-form-label">Template Name</label>
+            <input [(ngModel)]="tplName" name="tplName" #tplNamemodel="ngModel" type="text" class="form-control" placeholder="Your template's name here" id="tplName">
+          </div>
+        </form>
+  </div>
+  <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="createtpl()">Save</button>
+        <button type="button" class="btn btn-secondary" (click)="modalRef.hide()">Cancel</button>
+      </div>
+</ng-template>

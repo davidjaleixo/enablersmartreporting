@@ -1,0 +1,46 @@
+<p></p>
+<form>
+	
+
+<div class="card" *ngFor="let table of tables">
+  <div class="card-header">
+    {{ table.name }}
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+    	<table class="table table-hover" id="dataTable" >
+		  <thead>
+		    <tr>
+		      <th>Field Name</th>
+		      <th>Select</th>
+		      <th>Alias</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <tr *ngFor="let fields of table.fields">
+		      <td>{{ fields.Field }}</td>
+		      <td>
+		      	<div *ngIf="fields.selected">
+		      		<button type="button" class="btn btn-outline-primary" (click)="unselectField(table.name, fields.Field)"><i class="fas fa-check-square"></i></button>
+		      	</div>
+		      	<div *ngIf="!fields.selected">
+		      		<button type="button" class="btn btn-outline-dark" (click)="selectField(table.name, fields.Field)"><i class="fas fa-square"></i></button>
+		      	</div>
+			</td>
+			<td>
+		        <input *ngIf="fields.selected"  required [(ngModel)]="fields.aliases" name="{{fields.Field}}" type="text" class="form-control" placeholder="set your alias" id="{{fields.Field}}">
+		        <input *ngIf="!fields.selected" disabled [(ngModel)]="fields.aliases" name="{{fields.Field}}" type="text" class="form-control" placeholder="set your alias" id="{{fields.Field}}">
+			</td>
+		    </tr>
+		  </tbody>
+		</table>
+    </div>
+  </div>
+</div>
+
+<p></p>
+<div>
+	<button type="submit" class="btn btn-primary" (click)="saveFields()"><i class="fas fa-save"></i> Save</button>
+</div>
+</form>
+<p></p>

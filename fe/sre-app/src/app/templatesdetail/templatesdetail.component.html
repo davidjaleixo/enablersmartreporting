@@ -1,0 +1,88 @@
+<!-- Templates Details section -->
+
+<h1>{{template.name}}</h1>
+
+	<button class="btn btn-primary" (click)="manageconn(connections)">
+		<i class="fa fa-database"> Connections</i>
+	</button> 
+	<!--button class="btn btn-primary" (click)="managecss()">
+		<i class="fa fa-hashtag"> CSS</i>
+	</button>
+	<button class="btn btn-primary" (click)="managejs()">
+		<i class="fa fa-code"> JS</i>
+	</button--> 
+
+
+
+	  	<!-- Headers -->
+	  	<div class="card mb-3">
+	  		<div class="card-header">
+	  			<i class="fas fa-table"></i>
+	  			Header
+	  			<span class="float-right">
+					<button *ngIf="found" class="btn btn-primary btn-sm" (click)="editonh()"><i class="fa fa-edit"></i></button> 
+					<button *ngIf="config.editable" class="btn btn-success btn-sm" (click)="saveh()"><i class="fa fa-save"></i></button> 
+				</span>
+	  		</div>
+	  		<div class="card-body">
+	  			
+	  			<angular-editor *ngIf="found" [config]="config" [(ngModel)]="header.html"></angular-editor>
+	  			
+	  			<!-- create new header alert -->
+	  			<div *ngIf="!found" class="alert alert-warning" role="alert">
+				  <h4 class="alert-heading">There is no header</h4>
+				  <p>Please create your header to be inserted of your report later</p>
+				  <button class="btn btn-warning">Create now</button>
+				  <button class="btn btn-warning">Upload file</button>
+				</div>
+				<!-- create new header alert end -->
+
+	  		</div>
+	  	</div>
+	  	<!-- Headers end -->
+
+
+<!-- manage connections modal -->
+<!-- TODO delete -->
+<ng-template #connections>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Your MySQL Connection</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+          <div class="form-group">
+            <label for="hostname" class="col-form-label">Hostname</label>
+            <input required [(ngModel)]="connform.hostname" name="hostname" type="text" class="form-control" placeholder="MySQL DB hostname" id="hostname">
+          </div>
+          <div class="form-group">
+            <label for="port" class="col-form-label">Port</label>
+            <input required [(ngModel)]="connform.port" name="port" type="number" class="form-control" placeholder="MySQL DB port" id="port">
+          </div>
+          <div class="form-group">
+            <label for="username" class="col-form-label">Username</label>
+            <input required [(ngModel)]="connform.username" name="username" type="text" class="form-control" placeholder="MySQL DB username" id="username">
+          </div>
+          <div class="form-group">
+            <label for="password" class="col-form-label">Password</label>
+            <input required [(ngModel)]="connform.password" name="password" type="password" class="form-control" placeholder="MySQL DB password" id="password">
+          </div>
+          <div class="form-group">
+            <label for="dbname" class="col-form-label">DB Name</label>
+            <input required [(ngModel)]="connform.dbname" name="dbname" type="text" class="form-control" placeholder="MySQL DB name" id="dbname">
+          </div>
+          <div class="form-group">
+            <label for="tablename" class="col-form-label">Table Name</label>
+            <input required [(ngModel)]="connform.tablename" name="tablename"  type="text" class="form-control" placeholder="MySQL DB table name" id="tablename">
+          </div>
+
+        </form>
+  </div>
+  <div class="modal-footer">
+        <button type="button" class="btn btn-default" (click)="testconn()">Test connection</button>
+        <button type="button" class="btn btn-primary" (click)="saveconn()">Save</button>
+        <button type="button" class="btn btn-secondary" (click)="modalRef.hide()">Cancel</button>
+      </div>
+</ng-template>

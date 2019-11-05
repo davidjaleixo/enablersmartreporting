@@ -1,0 +1,25 @@
+#KBZ @ vf-OS project
+#David Aleixo david.aleixo@knowledgebiz.pt
+# Docker-compose service file for Smart Reporting Service
+
+version: '3.3'
+services:
+    sre:
+        restart: always
+        build: .
+        ports:
+            - "5920:2000"
+        depends_on:
+            - db
+    db:
+        image: mysql:5.7
+        restart: always
+        environment:
+            MYSQL_DATABASE: sre
+            MYSQL_USER: sreuser
+            MYSQL_PASSWORD: srepassword
+            MYSQL_ROOT_PASSWORD: changeme
+            MYSQL_ALLOW_EMPTY_PASSWORD: "no"
+        volumes:
+            - ./dbdata:/var/lib/mysql
+            - ./be/db/scripts:/docker-entrypoint-initdb.d

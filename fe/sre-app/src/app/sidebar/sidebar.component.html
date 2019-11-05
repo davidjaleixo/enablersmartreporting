@@ -1,0 +1,18 @@
+<!-- Sidebar -->
+<ul class="sidebar navbar-nav">
+  
+  <li class="nav-item dropdown" *ngFor="let tpl of tpls">
+    <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown{{tpl.id}}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <i class="fas fa-fw fa-folder"></i>
+      <span>{{tpl.name}}</span>
+    </a>
+    <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+      <a class="dropdown-item" href="{{tpl.owner}}/templates/{{tpl.id}}/connections"><i class="fas fa-fw fa-plug"></i>
+      <span>Connections</span></a>
+      <a class="dropdown-item" href="{{tpl.owner}}/templates/{{tpl.id}}/datasources"><i class="fas fa-fw fa-database"></i>
+      <span>Data source</span></a>
+      <a class="dropdown-item" href="{{tpl.owner}}/templates/{{tpl.id}}/styles"><i class="fas fa-fw fa-palette"></i>
+      <span>Style</span></a>
+    </div>
+  </li>
+</ul>

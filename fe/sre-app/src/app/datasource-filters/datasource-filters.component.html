@@ -1,0 +1,85 @@
+<p></p>
+<div class="card">
+  <div class="card-header">
+    <form>
+	
+		<div class="container">
+
+		  <div class="row">
+		    <div class="col">
+		      <div class="input-group">
+				  <div class="input-group-prepend">
+				    <label class="input-group-text" for="fieldsgroup">Fields</label>
+				  </div>
+				  <select class="custom-select" id="fieldsgroup" #selectedTable>
+				    <option selected>Choose...</option>
+				    <option *ngFor="let option of options" value="{{option.idtables}}|{{option.tablename}}|{{option.idfields}}|{{option.fieldname}}|{{option.aliases}}">{{option.tablename}} - {{option.fieldname}} as {{option.aliases}}</option>
+				  </select>
+				</div>
+		    </div>
+
+
+		    <div class="col">
+		      <div class="input-group">
+				<div class="input-group-prepend">
+			    	<label class="input-group-text" for="conditionsgroup">Conditions</label>
+			  	</div>
+			  	<select class="custom-select" id="conditionsgroup" #selectedCondition>
+				    <option selected>Choose...</option>
+				    <option value="=">Equals to</option>
+				    <option value=">">Greater then</option>
+				    <option value=">=">Greater then or equal to</option>
+				    <option value="<=">Less then </option>
+				    <option value="<=">Less then or equal to</option>
+			  	</select>
+				</div>
+		    </div>
+		    
+
+		    <div class="col">
+		      <div class="input-group">
+				<div class="input-group-prepend">
+					<label class="input-group-text" for="valuegroup">Value</label>
+				</div>
+				<input type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="filterValue">
+			</div>
+		    </div>
+
+		    <div class="col-md-auto">
+		       <button type="button" class="btn btn-primary" (click)="addFilter(selectedTable.value, selectedCondition.value)"><i class="fas fa-arrow-down"></i> Add</button>
+		    </div>
+
+		  </div>
+		</div>
+
+	</form>
+  </div>
+  <div class="card-body">
+  	<div class="table-responsive">
+	<table class="table table-hover">
+	  <thead>
+	    <tr>
+	      <th scope="col">Table</th>
+	      <th scope="col">Field</th>
+	      <th scope="col">Condition</th>
+	      <th scope="col">Value</th>
+	      <th scope="col">Action</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <tr *ngFor="let filter of filters">
+	      <td scope="row">{{filter.tablename}}</td>
+	      <td>{{filter.fieldname}} as {{filter.aliases}}</td>
+	      <td><span class="badge badge-dark">{{filter.cond}}</span></td>
+	      <td>{{filter.value}}</td>
+	      <td>
+	      	<button type="button" class="btn btn-danger btn-sm" (click)="deleteFilter(filter.idfilters)"><i class="fas fa-trash"></i></button>
+	      </td>
+	    </tr>
+	  </tbody>
+	</table>
+	</div>
+  </div>
+</div>
+
+<p></p>

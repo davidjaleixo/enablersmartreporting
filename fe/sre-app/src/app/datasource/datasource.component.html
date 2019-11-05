@@ -1,0 +1,16 @@
+<ol class="breadcrumb">
+	<li class="breadcrumb-item">
+	  <a>Datasource</a>
+	</li>
+</ol>
+<nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <a class="nav-item nav-link " [routerLink]="['./tables']" routerLinkActive="active" >Tables</a>
+    <a class="nav-item nav-link " [routerLink]="['./fields']" routerLinkActive="active" >Fields</a>
+    <a class="nav-item nav-link " [routerLink]="['./relations']" routerLinkActive="active" >Relationship</a>
+    <a class="nav-item nav-link " [routerLink]="['./filters']" routerLinkActive="active" >Filters</a>
+    
+
+  </div>
+</nav>
+<router-outlet></router-outlet>

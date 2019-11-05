@@ -1,0 +1,40 @@
+<p></p>
+<div class="card">
+  <div class="card-header">
+    Select your tables
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+
+      <table class="table table-hover" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th>Table Name</th>
+            <th>Select</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let table of tables">
+            <td>{{ table.table_name }}</td>
+            <td>
+              <div *ngIf="table.selected">
+                <button type="button" class="btn btn-outline-primary" (click)="unselectTable(table.table_name)"><i class="fas fa-check-square"></i></button>
+              </div>
+              <div *ngIf="!table.selected">
+                <button type="button" class="btn btn-outline-dark" (click)="selectTable(table.table_name)"><i class="fas fa-square"></i></button>
+              </div>
+
+        </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<p></p>
+<div>
+	<button type="button" class="btn btn-primary" (click)="saveTables()"><i class="fas fa-save"></i> Save</button>
+</div>
+<p></p>
