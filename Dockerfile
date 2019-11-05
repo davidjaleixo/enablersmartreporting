@@ -5,6 +5,8 @@
 #nodejs
 FROM node:9
 
+ENV ASSET_NAME="smartreportingenabler"
+
 #Maintainer
 LABEL description="Smart Reporting Enabler" 
 LABEL maintainer="david.aleixo@knowledgebiz.pt"
@@ -41,7 +43,7 @@ COPY . .
 
 # build angular cli app
 #RUN cd fe/sre-app && ng build
-
+RUN npm run boot
 # expose the Smart Reporting enabler port
 EXPOSE 2000
 
